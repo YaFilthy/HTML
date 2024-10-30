@@ -39,7 +39,7 @@
     <script>
         fetchPost('7574888042524926793', '7516510540312244306')
         async function fetchPost(blogId, postId) {
-            const apiKey = 'AIzaSyCKdB_ySZc70r8MthlOo5IFJPWJGTs6X8A';
+            const apiKey = 'Insert API key';
             const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/${postId}?key=${apiKey}`;
 
             try {
@@ -73,7 +73,7 @@
   <script>
     fetchPosts('7574888042524926793');
     async function fetchPosts(blogId) {
-      const apiKey = 'AIzaSyCKdB_ySZc70r8MthlOo5IFJPWJGTs6X8A';
+      const apiKey = 'INSERT your api Key';
       const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?key=${apiKey}&maxResults=4`;
 
       try {
