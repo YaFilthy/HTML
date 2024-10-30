@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="home.css">
-
+<link rel="stylesheet" href="style/home.css">
 <style>
     body {
         margin: 0;
+        border: 50px solid;
+        padding: 0px #666;
+        border-color: #546d5aa6;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)inset, 0 6px 20px 0 rgba(0, 0, 0, 0.19)inset;
+        border-radius: 0px;
       }
 </style>
-
-
-<!Step one Header>
 <head>
-    <Title>Browser Tab Title</Title> 
+    <Title>Simple Blogger Website</Title> 
     <body>
         <div class="header">
-          <h1>Header
-            <br>
+          <h1>HTML CSS JS Website<br>
+            with Blogger API
+            <br><br>
             <label for="load">Loading...</label>
             <br>
             <progress id="load"></progress></h1>
@@ -25,11 +27,74 @@
         </body>
 </head>
 <div class="topnav">
-    <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="#">Link</a>
+    <a href="#">Home</a>
+    <a href="#">Members</a>
+    <a href="#">References</a>
   </div>
 <body>
+    <div class="lcolumn">
+        <div class="box">
+          <h2>Calender</h2>
+          <div id="post"></div>
+    <script>
+        fetchPost('7574888042524926793', '7516510540312244306')
+        async function fetchPost(blogId, postId) {
+            const apiKey = 'AIzaSyCKdB_ySZc70r8MthlOo5IFJPWJGTs6X8A';
+            const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts/${postId}?key=${apiKey}`;
+
+            try {
+                  const response = await fetch(url);
+                  const post = await response.json();
+                
+                  document.getElementById('post').innerHTML = post.content;
+                } catch (error) {
+                  console.error('Error fetching post:', error);
+        }
+    }
+    </script>
+        
+        </div>
+        <div class="box">
+          <h3>Latest Meeting</h3>
+          <div class="embedvideo">
+            <iframe width="300" height="300" src="https://www.youtube-nocookie.com/embed/9xJOfwN2Jig?si=oD23QSyRSOW4TnfL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        </div>
+        <div class="box">
+          <h3>Follow Us</h3>
+          <p>YT Insta Linkedn twitter</p>
+        </div>
+      </div>
+    </div>
+<div class="flex-container">
+
+  <div class="posts-container" id="posts"></div>
+
+  <script>
+    fetchPosts('7574888042524926793');
+    async function fetchPosts(blogId) {
+      const apiKey = 'AIzaSyCKdB_ySZc70r8MthlOo5IFJPWJGTs6X8A';
+      const url = `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?key=${apiKey}&maxResults=4`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        const postsContainer = document.getElementById('posts');
+        data.items.forEach(post => {
+          const postElement = document.createElement('div');
+          postElement.className = 'post';
+          postElement.innerHTML = `<h2 class="post-title">${post.title}</h2><div>${post.content}</div>`;
+          postsContainer.appendChild(postElement);
+        });
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+  </script>
+</div>
+</div>
+<br><br>
 <div class="flex-container">
     <div class="container">
         <img src="img/test.jpg" alt="Snow">
@@ -37,16 +102,11 @@
         <button class="button button1">Yes</button>
     </div>
 </div>
-    <h1>
-        Fake News
-    </h1>
-    <p>When the Presidential Canadate wins the polls we know they won the election</p>
-    <h1>
-        Fake News
-    </h1>
-    <p>Dogs go meow</p>
+<br>
+
+
     <footer>
-        <p>© 2024 Sample</p>
+        <p>© 2024 SCC Programming Club</p>
       </footer>
 </body>
 </html>
